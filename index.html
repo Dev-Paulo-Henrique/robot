@@ -17,8 +17,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
   </head>
   <body>
-    <!-- <script src="js/three.js"></script> -->
+    <!-- <script src="js/three.js"></script> -->s
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script> -->
+	<script>
+		//speechSynthesis.speak(new SpeechSynthesisUtterance("Mãe, me dê 50 reais, por favor?"));
+
+	</script>
     <script>
       const api = { state: "Walking" };
       var renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
@@ -31,8 +35,8 @@
         0.1,
         1000
       );
-      camera.position.z = 5;
-      camera.position.y = 1.5;
+      camera.position.z = 2;
+      camera.position.y = 1;
       var light = new THREE.DirectionalLight(0xefefff, 3);
       light.position.set(1, 1, 1).normalize();
       scene.add(light);
