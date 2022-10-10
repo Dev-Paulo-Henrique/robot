@@ -1,0 +1,27 @@
+body {
+  margin: 0px;
+  overflow-y: hidden;
+}
+
+.speech {
+  width: 250px;
+  background: black;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  border-radius: 35px;
+  color: white;
+  position: absolute;
+  top: 20rem;
+  left: 15rem
+}
+.speech:before {
+  content: "";
+  position: absolute;
+  border-left: 20px solid black;
+  border-right: 20px solid transparent;
+  border-top: 20px solid black;
+  border-bottom: 20px solid transparent;
+  right: -20px;
+  top: 10px;
+}
