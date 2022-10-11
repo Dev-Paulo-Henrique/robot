@@ -1,27 +1,20 @@
 body {
-  margin: 0px;
+  margin: 0;
   overflow-y: hidden;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
+/* 
 .speech {
-  width: 250px;
-  background: black;
-  padding: 30px;
+  background: #FFFFFF;
+  border: 0.1rem solid #000000;
+  padding: 1rem;
   text-align: center;
-  font-size: 35px;
-  border-radius: 35px;
-  color: white;
+  border-radius: 2rem;
+  color: #000000;
   position: absolute;
-  top: 20rem;
-  left: 15rem
-}
-.speech:before {
-  content: "";
-  position: absolute;
-  border-left: 20px solid black;
-  border-right: 20px solid transparent;
-  border-top: 20px solid black;
-  border-bottom: 20px solid transparent;
-  right: -20px;
-  top: 10px;
-}
+  top: 50%;
+} */
