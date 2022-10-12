@@ -48,8 +48,9 @@ var areYouthere = 0;
 
 var renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
 document.body.appendChild(renderer.domElement);
-
 // renderer.setPixelRatio( window.devicePixelRatio );
 // renderer.outputEncoding = THREE.sRGBEncoding;
 var scene = new THREE.Scene();
@@ -61,25 +62,28 @@ var camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 2;
 camera.position.y = 1;
-scene.background = new THREE.Color(0xefefff);
-scene.fog = new THREE.Fog(0xefefff, 10, 50);
-var light = new THREE.DirectionalLight(0xefefff, 3);
-light.position.set(1, 1, 1).normalize();
+scene.background = new THREE.Color(0x87ceeb);
+scene.fog = new THREE.Fog(0x87ceeb, 10, 50);
+var light = new THREE.DirectionalLight(0xefefff, 2);
+light.position.set(1, 1, 1);
+light.castShadow = true;
 scene.add(light);
 const hemiLight = new THREE.HemisphereLight(0xefefff, 3);
-hemiLight.position.set(-1, -1, -1).normalize();
+// hemiLight.position.set(1, 1, 1);
 scene.add(hemiLight);
 //Divisão do fundo
 const mesh = new THREE.Mesh(
   new THREE.PlaneGeometry(2000, 2000),
   new THREE.MeshPhongMaterial({ color: 0x87ceeb, depthWrite: false })
 );
+mesh.receiveShadow = true;
 mesh.rotation.x = -Math.PI / 2;
 scene.add(mesh);
 //Quadriculado
 const grid = new THREE.GridHelper(200, 40, 0x000000, 0x000000);
 grid.material.opacity = 0.2;
 grid.material.transparent = true;
+// grid.receiveShadow = true;
 scene.add(grid);
 window.addEventListener("resize", function () {
   let width = window.innerWidth;
@@ -102,6 +106,7 @@ loader.load("RobotExpressive.glb", function (gltf) {
 
   model = gltf.scene;
   model.scale.set(0.35, 0.35, 0.35);
+  model.castShadow = true;
   scene.add(model);
 
   mixer = new THREE.AnimationMixer(model);
@@ -248,7 +253,7 @@ loader.load("RobotExpressive.glb", function (gltf) {
       }, 1500);
       output = "";
     }
-    if (output === "tá com fome") {
+    if (output === "tá com fome" || output === "Você é humano") {
       mixer.clipAction(gltf.animations[sayNo]).fadeIn(0.5).play();
       setTimeout(() => {
         mixer.clipAction(gltf.animations[sayNo]).fadeIn(0.5).stop();
@@ -303,6 +308,7 @@ function render() {
   if (mixer != null) mixer.update(delta);
   // if (model) camera.rotation.y += 0.025;
   // if (model) model.rotation.y += 0.025;
+  // if (model) scene.rotation.y += 0.0025;
 
   renderer.render(scene, camera);
 }
